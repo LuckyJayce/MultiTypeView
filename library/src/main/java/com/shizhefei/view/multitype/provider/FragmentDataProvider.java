@@ -33,7 +33,7 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int providerType) {
-        ChildViewHeightFrameLayout layout = new ChildViewHeightFrameLayout(parent.getContext());
+        ChildViewHeightLayout layout = new ChildViewHeightLayout(parent.getContext());
         layout.setLayoutParams(ViewUtils.getRightLayoutParams(parent, layoutWidth, layoutHeight));
         layout.setId(providerType);
         return new FragmentViewHolder(layout) {

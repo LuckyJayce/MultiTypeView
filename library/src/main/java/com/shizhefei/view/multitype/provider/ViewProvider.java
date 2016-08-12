@@ -27,7 +27,7 @@ public class ViewProvider extends ItemViewProvider<View> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int providerType) {
-        ChildViewHeightFrameLayout layout = new ChildViewHeightFrameLayout(parent.getContext());
+        ChildViewHeightLayout layout = new ChildViewHeightLayout(parent.getContext());
         layout.setLayoutParams(ViewUtils.getRightLayoutParams(parent, layoutWidth, layoutHeight));
         return new RecyclerView.ViewHolder(layout) {
         };
@@ -41,7 +41,7 @@ public class ViewProvider extends ItemViewProvider<View> {
         } else {
             layoutParams = view.getLayoutParams();
         }
-        ChildViewHeightFrameLayout layout = (ChildViewHeightFrameLayout) viewHolder.itemView;
+        ChildViewHeightLayout layout = (ChildViewHeightLayout) viewHolder.itemView;
         layout.removeAllViews();
         if (view.getParent() != null) {
             ViewGroup viewGroup = (ViewGroup) view.getParent();

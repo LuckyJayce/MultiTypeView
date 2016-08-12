@@ -34,6 +34,7 @@ import com.shizhefei.view.multitype.provider.FragmentDataProvider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MultiTypeAdapter<ITEM_DATA> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -71,15 +72,21 @@ public class MultiTypeAdapter<ITEM_DATA> extends RecyclerView.Adapter<RecyclerVi
         public void onItemRangeChanged(int positionStart, int itemCount) {
             super.onItemRangeChanged(positionStart, itemCount);
             if (!isSelfNotify) {
-                updateAllData(datas);
-            }
-        }
-
-        @Override
-        public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
-            super.onItemRangeChanged(positionStart, itemCount, payload);
-            if (!isSelfNotify) {
-                updateAllData(datas);
+                LinkedHashMap<ITEM_DATA, ItemBinder<ITEM_DATA>> map = new LinkedHashMap<>();
+                int end = positionStart + itemCount;
+                for (int i = positionStart; i < end; i++) {
+                    ItemBinder<ITEM_DATA> itemBinder = itemBinders.get(i);
+                    map.put(itemBinder.getData(), itemBinder);
+                }
+                for (int i = positionStart; i < end; i++) {
+                    ITEM_DATA data = datas.get(i);
+                    ItemBinder<ITEM_DATA> itemBinder = map.remove(data);
+                    if (itemBinder == null) {
+                        itemBinder = factory.buildItemData(data);
+                    }
+                    itemBinders.set(i, itemBinder);
+                }
+                doRemoveItemData(map.values());
             }
         }
 
@@ -249,11 +256,7 @@ public class MultiTypeAdapter<ITEM_DATA> extends RecyclerView.Adapter<RecyclerVi
                 itemBinder = data_Providers.get(object);
             }
             if (itemBinder == null) {
-                if (object instanceof ItemBinder) {
-                    itemBinder = (ItemBinder) object;
-                } else {
-                    itemBinder = factory.buildItemData(object);
-                }
+                itemBinder = factory.buildItemData(object);
             }
             data_Providers.put(object, itemBinder);
             providers.add(itemBinder);

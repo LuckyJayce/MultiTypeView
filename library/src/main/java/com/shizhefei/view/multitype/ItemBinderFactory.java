@@ -204,17 +204,17 @@ public class ItemBinderFactory {
      * @return ItemBinder
      */
     <DATA> ItemBinder<DATA> buildItemData(DATA data) {
-        PT vt = getPT(data);
-        if (vt == null) {
+        PT pt = getPT(data);
+        if (pt == null) {
             throw new RuntimeException("没有注册" + getDataClass(data) + " 对应的ItemProvider");
         }
-        int type = vt.providerType;
+        int type = pt.providerType;
         //每个Fragment都是唯一的type
-        if (vt.provider.isUniqueProviderType(data)) {
+        if (pt.provider.isUniqueProviderType(data)) {
             type = providerType;
             providerType++;
         }
-        return new ItemBinder<>(data, vt.provider, type);
+        return new ItemBinder<>(data, pt.provider, type);
     }
 
 //    public <DATA> ItemBinder<DATA> buildItemData(SerializableData data, ItemViewProvider<DATA> provider) {

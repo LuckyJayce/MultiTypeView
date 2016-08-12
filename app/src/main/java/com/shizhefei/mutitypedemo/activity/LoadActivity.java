@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.activity.longpage.LoadFragment;
 import com.shizhefei.view.multitype.ItemBinderFactory;
 import com.shizhefei.view.multitype.MultiTypeAdapter;
+import com.shizhefei.view.multitype.MultiTypeView;
+import com.shizhefei.view.multitype.provider.FragmentData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +38,12 @@ public class LoadActivity extends AppCompatActivity {
         loadMoreButton = findViewById(R.id.loadMore);
         insertAndRemoveButton = findViewById(R.id.insertAndRemove);
         boomButton = findViewById(R.id.boom);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        MultiTypeView multiTypeView = (MultiTypeView) findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //带有FragmentManager的构造函数，默认帮您添加支持Fragment数据的FragmentHolderProvider
         //也就是说你可以把Fragment放在adapter上使用，这里的Fragment只有第一次滑动到对应位置才会onCreateView的方法
         ItemBinderFactory factory = new ItemBinderFactory(getSupportFragmentManager());
-        recyclerView.setAdapter(multiTypeAdapter = new MultiTypeAdapter(loadData(0), factory));
+        multiTypeView.setAdapter(multiTypeAdapter = new MultiTypeAdapter(loadData(0), factory));
 
         refreshButton.setOnClickListener(onClickListener);
         loadMoreButton.setOnClickListener(onClickListener);
@@ -73,12 +71,10 @@ public class LoadActivity extends AppCompatActivity {
     private List<Object> loadData(int page) {
         List<Object> data = new ArrayList<>();
         for (int i = 0; i < colors.length; i++) {
-            Fragment f = new LoadFragment();
-            Bundle loadData = new Bundle();
-            loadData.putInt("color", colors[i]);
-            loadData.putString("1", String.valueOf(page) + "#" + i);
-            f.setArguments(loadData);
-            data.add(f);
+            FragmentData fragmentData = new FragmentData(LoadFragment.class, "LoadFragment" + page + i);
+            fragmentData.putInt("color", colors[i]);
+            fragmentData.putString("1", String.valueOf(page) + "#" + i);
+            data.add(fragmentData);
         }
         this.page = page;
         return data;
