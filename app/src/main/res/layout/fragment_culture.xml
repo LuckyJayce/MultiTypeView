@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_4"
+    android:paddingTop="@dimen/space_4">
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="文化" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sanya" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="地理气候" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="三亚市气候独特。三亚地处低纬度，受海洋气候的影响较大，属热带海洋季风性气候。年平均气温25度，气温最高为7月，平均为28度，气温最低为1月份，平均气温为21度。全年日照时间2563小时，年平均降雨量1279毫米。这里四季如春可谓三冬不见霜和雪，四季鲜花常盛开，素有东方夏威夷之称。这种气候最宜旅游休闲度假。
+
+三亚全市面积1919.58平方千米，其中规划市区面积38平方千米。东西长91.6千米，南北宽51千米。全境北靠高山，南临大海，地势自北向南逐渐倾斜，形成一个狭长状的多角形。境内海岸线长209.1千米，有大小港湾19个。主要港口有三亚港、榆林港、南山港、铁炉港、六道港。主要海湾有三亚湾、海棠湾、亚龙湾、崖州湾、大东海湾、月亮湾。有大小岛屿40个，主要岛屿10个，面积较大的有西瑁洲岛2.12平方千米，蜈支洲岛1.05平方千米。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="历史" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="三亚”因三亚河（古名临川水）有三亚东西二河至此会合，成“丫”字形，故取名“三亚”。 三亚市古时称为崖州，它虽然位于祖国的最南端，却受中原文化的润泽、影响深远，有着灿烂的文化。这里是崖州古代、近代政治、经济、文化中心，现存较多文物古迹。
+
+三亚市位于海南省南部，原地区在政治、经济、文化等各个方面一直保持着联系。它曾是隋朝谯国冼太夫人的“汤沐邑”，唐朝大和尚鉴真漂流登岸和传道讲经之地。中原衣冠人物之南来，客观上在当地起了敷扬教化的作用，留下了诸多的人文胜迹。延及宋、元、明时期，三亚的经济已有初步发展，棉纺业居全国领先地位，古代女纺织家黄道婆早年在本地向黎族妇女学习纺织技术。这一时期还涌现了“琼州三星”之一的岭海巨儒钟芳。
+
+三亚历史悠久，源远流长，文化多姿多彩。天涯海角、大小洞天、崖州古城、落笔洞三亚古人类遗址等都蕴涵着丰厚的历史文化。早在秦始皇时期设置的南方三郡，崖州就是其中之一的象郡。汉代在现在的三亚市崖城镇设立了珠崖郡治，隋设临振郡，唐代改为振州。宋代时成为我国最南端的地级规模的州郡。因其远离帝京、孤悬海外，自古以来三亚一直被称为“天涯海角”。唐代宰相韩瑗、名僧鉴真，宋代名相赵鼎、大臣胡铨和纺织家黄道婆等先后来过崖州，对本地区的经济文化交流和发展作出了重要的贡献。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="艺术" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="据史料记载，黎族是三亚乃至海南的土著民族。最早可追溯到新石器时代“赛人”、“杞人”、“润人”、“美孚人”，按其语言分为5个方言分支，即加茂方言、杞方言、佬方言、本地方言和美孚方言，按其服饰可分为“长桶黎”、“短桶黎”、“多文黎”、“少文黎”。在人们还不知道三亚的时候，勤劳的黎族人就在这块土地上刀耕火种，以特有的民族文化和瑰丽的织锦艺术而著称，民风质朴、敦厚。值得一提的是，槟椰是黎族人走亲访友的贵重礼物，以数目多少来表达情意的厚薄。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="传统建筑" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="船形屋是三亚黎族最富有民族特色以及地方特色的传统住宅类型。其特点是：平面个长方形，整个屋子由前廊和卧室两部分组成。整个屋顶像一艘小船，主体用竹木构架，藤条捆扎，由茅草盖顶一直接到地面，屋内不设隔间，对开门，门上屋檐伸展，其下为休息、置物的场所，一般都不设窗户，据说开窗会有“恶鬼”进入屋内，作祟人畜，引起疾病。所以船形屋都很阴暗，通风采光较差。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="民俗特色" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="三亚黎族奉行祖先崇拜与自然崇拜，对“万物有灵”的迷信很重。黎族大多同姓聚居，过去有婚后“不落夫家”的习俗。黎族妇女穿对襟无扣上衣和筒裙，某些个别地方穿套头式上衣，束发脑后，扣以骨管，披绣花头巾，戴耳环、项圈和手锡。传统黎族妇女有纹身，一般都会纹在面部、手背以及脚裸。男子结发于额前或脑后，上衣无领，对襟。黎族人死后，都会鸣枪报丧，并用“独木棺”葬于本村的公共墓地。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+</LinearLayout>

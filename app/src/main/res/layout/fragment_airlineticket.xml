@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_4"
+    android:paddingLeft="@dimen/space_8"
+    android:paddingRight="@dimen/space_8"
+    android:paddingTop="@dimen/space_4">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:contentPadding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/text_normal"
+                    android:drawableLeft="@drawable/airlinetiket"
+                    android:gravity="center"
+                    android:text="机票" />
+
+                <TextView
+                    style="@style/text_secondary"
+                    android:layout_marginLeft="@dimen/space_8"
+                    android:layout_marginRight="@dimen/space_8"
+                    android:text="三亚5万(2016-08-04至2016-08-09)" />
+            </LinearLayout>
+
+            <View style="@style/divider" />
+
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="@dimen/space_8"
+                android:drawableLeft="@drawable/go"
+                android:drawablePadding="@dimen/space_8"
+                android:text="08-04|天津航空GS7569|经济舱" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal"
+                        android:text="08:20" />
+
+                    <TextView
+                        style="@style/text_secondary"
+                        android:text="乌鲁木齐" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/to" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal"
+                        android:text="15:15" />
+
+                    <TextView
+                        style="@style/text_secondary"
+                        android:text="三亚凤凰机场" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginTop="@dimen/space_8" />
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="@dimen/space_8"
+                android:drawableLeft="@drawable/back"
+                android:drawablePadding="@dimen/space_8"
+                android:text="08-09|天津航空GS7569|经济舱" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal"
+                        android:text="17:15" />
+
+                    <TextView
+                        style="@style/text_secondary"
+                        android:text="三亚凤凰机场" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/to" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_normal"
+                        android:text="01:00" />
+
+                    <TextView
+                        style="@style/text_secondary"
+                        android:text="乌鲁木齐" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

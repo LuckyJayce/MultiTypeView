@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_4"
+    android:paddingTop="@dimen/space_4">
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="三亚" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sanya" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="大家印象" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="是个旅游度假的好地方，气候宜人，有很多好玩的地方。海水很清澈，号称中国最美的海滩，海风凉爽，沙滩海水蓝天人气都是一流的。这里的水果和海鲜都很好吃，但是价格也很贵" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_8"
+        android:text="走进三亚" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="三亚市位于海南岛最南端，是中国最南部的滨海旅游城市。因三亚河（古名临川水）由三亚东西河至此会合，成“丫”字形，故取名“三亚”。同时它也是是一个黎、苗、回、汉多民族聚居的地区。 三亚拥有被无数城市嫉妒的清新空气，柔和海滩。在沙滩悠闲散步、沐浴傍晚温和阳光，在海边玩耍，在雨林里面呼吸健康，欣赏自然奇观，一切都是那么令人享受。三亚连续四次成为举办世界小姐总决赛的所在地，同时世界大力士锦标赛，世界比基尼小姐大赛等等国际大赛都因为三亚迷人的热带海滨风光而选择了它。毫无疑问，三亚是中国不可多得的能成为世界顶级度假圣地的城市。 习惯了都市快节奏生活的人们，纷纷涌入这座海滨小城，从而带来了许多城市管理问题。旅游资源的丰富与旅游服务之间的矛盾，导致各种宰客现象层出不穷，这让不少到过三亚的人为之不满。但是这一切都会慢慢改变，因为没有什么会阻挡三亚成为国际度假圣地的脚步。 三亚门户网站 http://www.sanya.gov.cn/" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="最佳季节" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="全年皆宜。三亚一年300天以上都是晴天，阳光明媚，气候温和适宜，永远都是出行的首选。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+
+
+    <TextView
+        style="@style/text_normal"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="建议游玩" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        style="@style/text_secondary"
+        android:padding="@dimen/space_8"
+        android:text="3-6天" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_16"
+        android:background="#eee" />
+</LinearLayout>

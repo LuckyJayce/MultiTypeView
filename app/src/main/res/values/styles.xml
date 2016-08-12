@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="Message" />
+
+    <style name="Message.Frame">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/square_border</item>
+    </style>
+
+
+    <style name="text_secondary">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/textSize_secondary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text_normal">
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textSize">@dimen/textSize_normal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text_big">
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textSize">@dimen/textSize_big</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="divider">
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+</resources>
