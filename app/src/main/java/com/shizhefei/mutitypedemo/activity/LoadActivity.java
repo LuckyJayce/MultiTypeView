@@ -10,10 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.activity.longpage.LoadFragment;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

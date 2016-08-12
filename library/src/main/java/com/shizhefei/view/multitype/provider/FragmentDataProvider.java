@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.shizhefei.view.multitype.ItemViewProvider;
 import com.shizhefei.view.multitype.ViewUtils;
-import com.shizhefei.view.multitype.data.FragmentData;
 
 /**
  * FragmentData提供者
@@ -35,11 +33,10 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int providerType) {
-        Log.d("pppp","FragmentDataProvider onCreateViewHolder:"+providerType);
         ChildViewHeightFrameLayout layout = new ChildViewHeightFrameLayout(parent.getContext());
         layout.setLayoutParams(ViewUtils.getRightLayoutParams(parent, layoutWidth, layoutHeight));
         layout.setId(providerType);
-        return new MyViewH(layout) {
+        return new FragmentViewHolder(layout) {
             @Override
             public String toString() {
                 return "Fragment :" + super.toString();
@@ -50,22 +47,30 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
         super.onViewAttachedToWindow(viewHolder);
-        MyViewH viewH = (MyViewH) viewHolder;
+        FragmentViewHolder viewH = (FragmentViewHolder) viewHolder;
+        FragmentData fragmentData = viewH.fragmentData;
         int containerViewId = viewHolder.itemView.getId();
-        if (!viewH.fragmentData.isAdd(containerViewId)) {
-            viewH.fragmentData.addFragment(fragmentManager, containerViewId);
+        Fragment fragment = fragmentData.fragment;
+        if (fragment == null) {
+            fragmentData.setContainerViewId(containerViewId);
+            fragment = getFragment(fragmentData);
+            if (fragment.isAdded()) {
+                fragmentManager.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
+                if (fragmentData.savedState != null) {
+                    fragment.setInitialSavedState(fragmentData.savedState);
+                }
+            }
+            fragmentManager.beginTransaction().add(containerViewId, fragment, fragmentData.getTag()).commitNowAllowingStateLoss();
+            fragmentData.setFragment(fragment);
         }
-        Fragment fragment = viewH.fragmentData.getFragment();
-        if (fragment != null) {
-            fragment.setUserVisibleHint(true);
-            fragment.setMenuVisibility(true);
-        }
+        fragment.setUserVisibleHint(true);
+        fragment.setMenuVisibility(true);
     }
 
     @Override
     public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) {
         super.onViewDetachedFromWindow(viewHolder);
-        MyViewH viewH = (MyViewH) viewHolder;
+        FragmentViewHolder viewH = (FragmentViewHolder) viewHolder;
         Fragment fragment = viewH.fragmentData.getFragment();
         if (fragment != null) {
             fragment.setUserVisibleHint(false);
@@ -75,13 +80,15 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, FragmentData fragmentData) {
-        MyViewH viewH = (MyViewH) viewHolder;
+        FragmentViewHolder viewH = (FragmentViewHolder) viewHolder;
         viewH.fragmentData = fragmentData;
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState, FragmentData data) {
         super.onRestoreInstanceState(savedInstanceState, data);
+        Fragment.SavedState savedState = savedInstanceState.getParcelable("FragmentData#" + data.getTag());
+        data.setSavedState(savedState);
     }
 
     @Override
@@ -91,13 +98,51 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
         if (fragment != null) {
             fragment.setUserVisibleHint(false);
             fragment.setMenuVisibility(false);
+            try {
+                Fragment.SavedState savedState = fragmentManager.saveFragmentInstanceState(fragment);
+                savedInstanceState.putParcelable("FragmentData#" + data.getTag(), savedState);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private class MyViewH extends RecyclerView.ViewHolder {
+    private Fragment getFragment(FragmentData fragmentData) {
+        if (fragmentData.fragment != null) {
+            return fragmentData.fragment;
+        }
+        Fragment fragment = fragmentManager.findFragmentByTag(fragmentData.getTag());
+        if (fragment == null) {
+            fragment = instantiate(fragmentData);
+            if (fragmentData.savedState != null) {
+                fragment.setInitialSavedState(fragmentData.savedState);
+            }
+            fragment.setMenuVisibility(false);
+            fragment.setUserVisibleHint(false);
+        }
+        return fragment;
+    }
+
+    private Fragment instantiate(FragmentData fragmentData) {
+        try {
+            Class<? extends Fragment> fragmentClass = fragmentData.getFragmentClass();
+            Fragment f = fragmentData.getFragmentClass().newInstance();
+            if (fragmentClass != null) {
+                Bundle arguments = fragmentData.getArguments();
+                arguments.setClassLoader(f.getClass().getClassLoader());
+                f.setArguments(arguments);
+            }
+            return f;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("创建fragmentClass 失败", e);
+        }
+    }
+
+    private class FragmentViewHolder extends RecyclerView.ViewHolder {
         private FragmentData fragmentData;
 
-        public MyViewH(View itemView) {
+        public FragmentViewHolder(View itemView) {
             super(itemView);
         }
     }

@@ -23,4 +23,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     provided 'com.android.support:support-v4:24.1.1'
     provided 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.shizhefei:MVCHelper-Library:1.0.6'
 }

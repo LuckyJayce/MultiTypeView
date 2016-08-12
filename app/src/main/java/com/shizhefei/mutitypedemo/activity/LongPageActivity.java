@@ -3,36 +3,34 @@ package com.shizhefei.mutitypedemo.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
-import com.shizhefei.view.multitype.MultiTypeView;
-import com.shizhefei.view.multitype.data.FragmentData;
 import com.shizhefei.mutitypedemo.R;
-import com.shizhefei.mutitypedemo.activity.longpage.AirlineTicketFragment;
-import com.shizhefei.mutitypedemo.activity.longpage.FoodFragment;
-import com.shizhefei.mutitypedemo.activity.longpage.HotelFragment;
-import com.shizhefei.mutitypedemo.activity.longpage.InfoFragment;
-import com.shizhefei.mutitypedemo.activity.longpage.RecommendFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.AirlineTicketLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.CultureLazyFragment;
 import com.shizhefei.mutitypedemo.activity.longpagelazy.EditLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.FoodLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.HotelLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.InfoLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.RecommendLazyFragment;
+import com.shizhefei.mutitypedemo.activity.longpagelazy.ShopLazyFragment;
 import com.shizhefei.mutitypedemo.type.ImageItem;
 import com.shizhefei.mutitypedemo.type.RichItem;
 import com.shizhefei.mutitypedemo.util.DisplayUtils;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
+import com.shizhefei.view.multitype.MultiTypeView;
+import com.shizhefei.view.multitype.provider.FragmentData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class LongPageActivity extends AppCompatActivity {
-    private MultiTypeAdapter multiTypeAdapter;
+    private MultiTypeAdapter<Object> multiTypeAdapter;
     private int page;
     private View refreshButton;
     private View loadMoreButton;
@@ -55,18 +53,7 @@ public class LongPageActivity extends AppCompatActivity {
         //带有FragmentManager的构造函数，默认帮您添加支持Fragment数据的FragmentHolderProvider
         //也就是说你可以把Fragment放在adapter上使用，这里的Fragment只有第一次滑动到对应位置才会onCreateView的方法
         ItemBinderFactory factory = new ItemBinderFactory(getSupportFragmentManager());
-        multiTypeAdapter = new MultiTypeAdapter(factory);
-
-        Log.d("pppp", "LongPageActivity savedInstanceState:" + savedInstanceState);
-
-        if (savedInstanceState != null) {
-            print(savedInstanceState);
-        }
-
-        if (savedInstanceState != null)
-            multiTypeAdapter.onRestoreInstanceState(recyclerView, savedInstanceState);
-
-        multiTypeAdapter.notifyDataChanged(loadData(0), true);
+        multiTypeAdapter = new MultiTypeAdapter<>(loadData(0), factory);
 
         recyclerView.setAdapter(multiTypeAdapter);
 
@@ -75,39 +62,6 @@ public class LongPageActivity extends AppCompatActivity {
         loadMoreButton.setOnClickListener(onClickListener);
         insertAndRemoveButton.setOnClickListener(onClickListener);
         boomButton.setOnClickListener(onClickListener);
-
-        List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        if (fragments != null) {
-            for (Fragment f : fragments) {
-                Log.d("cccc", "Activity onCreate方法 :" + f);
-            }
-        }
-    }
-
-    private void print(Bundle bundle) {
-        Set<String> keySet = bundle.keySet();
-        for (String key : keySet) {
-            Log.d("pppp", "key:" + key + " " + bundle.get(key) + " savedInstanceState.get(key):" + bundle.get(key).getClass());
-            Object o = bundle.get(key);
-            if (o instanceof Bundle) {
-                print((Bundle) o);
-            } else if (o instanceof SparseArray) {
-                print((SparseArray) o);
-            }
-        }
-    }
-
-    private void print(SparseArray sparseArray) {
-        int count = sparseArray.size();
-        for (int i = 0; i < count; i++) {
-            Log.d("pppp", "SparseArray key:" + sparseArray.keyAt(i) + " " + sparseArray.valueAt(i));
-            Object o = sparseArray.valueAt(i);
-            if (o instanceof Bundle) {
-                print((Bundle) o);
-            } else if (o instanceof SparseArray) {
-                print((SparseArray) o);
-            }
-        }
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -143,26 +97,17 @@ public class LongPageActivity extends AppCompatActivity {
             data.add(new RichItem("LLLLL", R.drawable.food_1));
             data.add(new ImageItem(R.mipmap.ic_launcher));
         }
-//        data.add(new FragmentData(InfoLazyFragment.class, "InfoFragment" + page));
-//        data.add(new FragmentData(HotelLazyFragment.class, "HotelFragment" + page));
-//        data.add(new FragmentData(AirlineTicketLazyFragment.class, "AirlineTicketFragment" + page));
-//        data.add(new FragmentData(RecommendLazyFragment.class, "RecommendFragment" + page));
-//        data.add(new FragmentData(FoodLazyFragment.class, "FoodFragment" + page));
 
-        data.add(new FragmentData(EditLazyFragment.class, "EditFragment" + page));
-        data.add(new FragmentData(InfoFragment.class, "InfoFragment" + page));
-        data.add(new FragmentData(HotelFragment.class, "HotelFragment" + page));
-        data.add(new FragmentData(AirlineTicketFragment.class, "AirlineTicketFragment" + page));
-        data.add(new FragmentData(RecommendFragment.class, "RecommendFragment" + page));
-        data.add(new FragmentData(FoodFragment.class, "FoodFragment" + page));
+        data.add(new FragmentData(InfoLazyFragment.class, "InfoLazyFragment" + page));
+        data.add(new FragmentData(EditLazyFragment.class, "EditLazyFragment" + page));
+        data.add(new FragmentData(HotelLazyFragment.class, "HotelLazyFragment" + page));
+        data.add(new FragmentData(AirlineTicketLazyFragment.class, "AirlineTicketLazyFragment" + page));
+        data.add(new FragmentData(ShopLazyFragment.class, "ShopLazyFragment" + page));
+        data.add(new FragmentData(RecommendLazyFragment.class, "RecommendLazyFragment" + page));
+        data.add(new FragmentData(FoodLazyFragment.class, "FoodLazyFragment" + page));
+        data.add(new FragmentData(CultureLazyFragment.class, "CultureLazyFragment" + page));
 
         this.page = page;
         return data;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        multiTypeAdapter.onSaveInstanceState(recyclerView, outState);
     }
 }

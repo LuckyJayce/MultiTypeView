@@ -34,11 +34,6 @@
             android:text="加载更多" />
     </LinearLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3" />
-
     <com.shizhefei.view.multitype.MultiTypeView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.type.Good;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +35,15 @@ public class ShopFragment extends Fragment {
         //所以里面的recyclerView 适用于少量的item，大量的item还是建议放在外面的recyclerView去实现
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(new MultiTypeAdapter(load(), new ItemBinderFactory()));
+        recyclerView.setAdapter(new MultiTypeAdapter<Object>(load(), new ItemBinderFactory()));
 
 //        FragmentStatePagerAdapter
 
         return view;
     }
 
-    private List<Object> load() {
-        List<Object> foods = new ArrayList<>();
+    private List<Good> load() {
+        List<Good> foods = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             foods.add(new Good());
         }

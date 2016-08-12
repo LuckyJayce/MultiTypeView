@@ -28,14 +28,10 @@ class ChildViewHeightFrameLayout extends FrameLayout {
             int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
                     MeasureSpec.AT_MOST);
             super.onMeasure(expandSpec, expandSpec);
-//            Log.d("eeee", "onMeasure:00000000000 :" + this);
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             View chi = getChildAt(0);
             setMeasuredDimension(chi.getMeasuredWidth(), chi.getMeasuredHeight());
-//            Log.d("eeee", "onMeasure:11111111111 :" + this);
         }
-
-//        Log.d("eeee", "onMeasure:" + getMeasuredWidth() + " h:" + getMeasuredHeight() + "  " + this);
     }
 }

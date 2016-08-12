@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.type.Food;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +31,13 @@ public class FoodFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
-        recyclerView.setAdapter(new MultiTypeAdapter(load(), new ItemBinderFactory()));
+        recyclerView.setAdapter(new MultiTypeAdapter<Object>(load(), new ItemBinderFactory()));
         Log.d("dddd", "onCreateView :" + getClass().getSimpleName() + "  " + savedInstanceState);
         return view;
     }
 
-    private List<Object> load() {
-        List<Object> foods = new ArrayList<>();
+    private List<Food> load() {
+        List<Food> foods = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             foods.add(new Food());
         }

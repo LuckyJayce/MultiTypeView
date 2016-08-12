@@ -5,14 +5,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeStateAdapter;
-import com.shizhefei.view.multitype.MultiTypeView;
-import com.shizhefei.view.multitype.data.FragmentData;
-import com.shizhefei.view.multitype.data.SerializableData;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.activity.longpage.AirlineTicketFragment;
 import com.shizhefei.mutitypedemo.activity.longpage.CultureFragment;
@@ -22,9 +16,13 @@ import com.shizhefei.mutitypedemo.activity.longpage.HotelFragment;
 import com.shizhefei.mutitypedemo.activity.longpage.InfoFragment;
 import com.shizhefei.mutitypedemo.activity.longpage.RecommendFragment;
 import com.shizhefei.mutitypedemo.activity.longpage.ShopFragment;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
+import com.shizhefei.view.multitype.MultiTypeView;
+import com.shizhefei.view.multitype.data.SerializableData;
+import com.shizhefei.view.multitype.provider.FragmentData;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -32,7 +30,7 @@ import java.util.List;
  * Fragment的恢复机制可以查看 EditLazyFragment<br/>
  */
 public class LongPageStateActivity extends AppCompatActivity {
-    private MultiTypeStateAdapter multiTypeStateAdapter;
+    private MultiTypeAdapter<Parcelable> multiTypeStateAdapter;
     private int page;
     private View refreshButton;
     private View loadMoreButton;
@@ -48,30 +46,21 @@ public class LongPageStateActivity extends AppCompatActivity {
         loadMoreButton = findViewById(R.id.loadMore);
         insertAndRemoveButton = findViewById(R.id.insertAndRemove);
         boomButton = findViewById(R.id.boom);
-        MultiTypeView recyclerView = (MultiTypeView) findViewById(R.id.recyclerView);
+        MultiTypeView multiTypeView = (MultiTypeView) findViewById(R.id.recyclerView);
 
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //带有FragmentManager的构造函数，默认帮您添加支持Fragment数据的FragmentHolderProvider
         //也就是说你可以把Fragment放在adapter上使用，这里的Fragment只有第一次滑动到对应位置才会onCreateView的方法
         ItemBinderFactory factory = new ItemBinderFactory(getSupportFragmentManager());
-        multiTypeStateAdapter = new MultiTypeStateAdapter(factory);
-//        if (savedInstanceState != null) {//之前有保存的数据
-//            Toast.makeText(this, "恢复中", Toast.LENGTH_SHORT).show();
-//            page = savedInstanceState.getInt("page");
-//            multiTypeStateAdapter.restoreState(savedInstanceState);
-//        } else {
-//            List<Parcelable> data = loadData(0);
-//            multiTypeStateAdapter.notifyDataChanged(data, true);
-//        }
+        multiTypeStateAdapter = new MultiTypeAdapter<>(factory);
 
-        if (savedInstanceState == null) {
-            multiTypeStateAdapter = new MultiTypeStateAdapter(loadData(0), factory);
-        } else {
+        //从savedInstanceState中恢复列表数据（onSaveInstanceState()方法保存的数据）
+        if (MultiTypeAdapter.restoreState("data", multiTypeStateAdapter, savedInstanceState)) {
             page = savedInstanceState.getInt("page");
-            multiTypeStateAdapter = new MultiTypeStateAdapter(factory);
+        } else {
+            //重新加载列表数据
+            multiTypeStateAdapter.notifyDataChanged(loadData(0), false);
         }
-
-        recyclerView.setAdapter(multiTypeStateAdapter);
+        multiTypeView.setAdapter(multiTypeStateAdapter);
 
         refreshButton.setOnClickListener(onClickListener);
         loadMoreButton.setOnClickListener(onClickListener);
@@ -79,15 +68,6 @@ public class LongPageStateActivity extends AppCompatActivity {
         boomButton.setOnClickListener(onClickListener);
         insertAndRemoveButton.setVisibility(View.GONE);
 
-        Log.d("cccc", "LongPageStateActivity onCreate:");
-        List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        if (fragments != null) {
-            Iterator<Fragment> iterator = fragments.iterator();
-            while (iterator.hasNext()) {
-                Fragment f = iterator.next();
-                Log.d("cccc", "LongPageStateActivity onCreate:" + f);
-            }
-        }
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -147,7 +127,7 @@ public class LongPageStateActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("page", page);
-//        multiTypeStateAdapter.saveState(outState);
+        MultiTypeAdapter.saveState("data", multiTypeStateAdapter, outState);
     }
 
 }

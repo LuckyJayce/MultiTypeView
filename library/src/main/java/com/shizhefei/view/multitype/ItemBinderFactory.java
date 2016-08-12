@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.util.SparseArray;
 import android.view.View;
 
-import com.shizhefei.view.multitype.data.FragmentData;
+import com.shizhefei.view.multitype.provider.FragmentData;
 import com.shizhefei.view.multitype.data.IParcelableData;
 import com.shizhefei.view.multitype.provider.FragmentDataProvider;
 import com.shizhefei.view.multitype.provider.ViewProvider;
@@ -203,15 +203,7 @@ public class ItemBinderFactory {
      * @param <DATA> 数据泛型
      * @return ItemBinder
      */
-    <DATA> ItemBinder<DATA> buildItemData(TypeAdapter<?> adapter, DATA data) {
-        if (data instanceof FragmentData) {
-            FragmentData fragmentData = (FragmentData) data;
-            int containerViewId = adapter.getFragmentContainerViewId(fragmentData.getTag());
-            if (containerViewId == View.NO_ID) {
-                containerViewId = ViewUtils.madeFragmentContainerViewIdAndProviderType();
-            }
-            return (ItemBinder<DATA>) new ItemBinder<>((FragmentData) data, fragmentDataProvider, containerViewId);
-        }
+    <DATA> ItemBinder<DATA> buildItemData(DATA data) {
         PT vt = getPT(data);
         if (vt == null) {
             throw new RuntimeException("没有注册" + getDataClass(data) + " 对应的ItemProvider");

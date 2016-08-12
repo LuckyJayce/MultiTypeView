@@ -29,7 +29,7 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.shizhefei:ViewPagerIndicator:1.1.1'
+    compile 'com.shizhefei:ViewPagerIndicator:1.1.2'
     compile 'com.shizhefei:MVCHelper-Library:1.0.6'
     compile project(path: ':library')
 }

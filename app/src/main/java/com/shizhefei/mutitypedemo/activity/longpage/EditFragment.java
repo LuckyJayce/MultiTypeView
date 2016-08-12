@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.recyclerview.HFAdapter;
 import com.shizhefei.recyclerview.HFRecyclerAdapter;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class EditFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("cccc", "EditLazyFragment 保存:");
+        Log.d("cccc", "EditLazyFragment 保存:" + this);
         List<Object> datas = multiTypeAdapter.getData();
         outState.putSerializable("data", (Serializable) datas);
     }

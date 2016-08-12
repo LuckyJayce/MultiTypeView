@@ -14,7 +14,7 @@ public class ViewUtils {
 
     private static int id = 2345;
 
-    public static int id() {
+    public static int madeId() {
         return id++;
     }
 

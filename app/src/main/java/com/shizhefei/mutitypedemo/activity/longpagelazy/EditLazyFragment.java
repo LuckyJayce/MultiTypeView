@@ -14,11 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.shizhefei.fragment.LazyFragment;
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.recyclerview.HFAdapter;
 import com.shizhefei.recyclerview.HFRecyclerAdapter;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class EditLazyFragment extends LazyFragment {
 
     @Override
     protected View getPreviewLayout(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_edit,container,false);
+        return inflater.inflate(R.layout.fragment_edit, container, false);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class EditLazyFragment extends LazyFragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (multiTypeAdapter != null) {
-            Log.d("cccc", "EditLazyFragment 保存:");
+            Log.d("cccc", "EditLazyFragment 保存:" + this);
             List<Object> datas = multiTypeAdapter.getData();
             outState.putSerializable("data", (Serializable) datas);
         }

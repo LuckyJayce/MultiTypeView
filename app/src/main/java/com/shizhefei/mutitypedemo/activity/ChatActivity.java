@@ -9,13 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
-import com.shizhefei.view.multitype.ItemBinderFactory;
-import com.shizhefei.view.multitype.ItemViewProviderSet;
-import com.shizhefei.view.multitype.MultiTypeAdapter;
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.type.Message;
 import com.shizhefei.mutitypedemo.type.MessageLeftProvider;
 import com.shizhefei.mutitypedemo.type.MessageRightProvider;
+import com.shizhefei.view.multitype.ItemBinderFactory;
+import com.shizhefei.view.multitype.ItemViewProviderSet;
+import com.shizhefei.view.multitype.MultiTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
