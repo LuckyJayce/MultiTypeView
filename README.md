@@ -94,14 +94,16 @@ Activity代码
 	}  
 ## 很简单吧，三个步骤  
 **1.实现ItemViewProvider并注册到ItemBinderFactory上**  
+  
 **2.然后设置MultiTypeAdapter**  
+   
 **3.添加数据**   
 
   
   
 ## 说明 ##
     
-**本项目是根据 https://github.com/drakeet/MultiType的想法  
+**本项目是根据 https://github.com/drakeet/MultiType 类库的想法  
 把ViewHolder的创建以ItemViewProvider的形式分离出来
 ，以及参考了部分代码实现.**  
 
