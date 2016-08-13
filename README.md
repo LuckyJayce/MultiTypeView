@@ -2,14 +2,16 @@ MultiTypeView
 ==================  
 
 #1.简化RecyclerView的多种type的adapter
-#2.支持一种数据对应多种ViewHolder的配置
-#3.的创建ViewHolder被抽取出来，可以被多个adapter复用
-#4.Fragment可以添加到RecyclerView上，实现复杂的界面
+#2.ViewHolder的创建和绑定被提取出来变成ItemViewProvider，可以被多个adapter复用  
+#3.支持一种数据对应多种ItemViewProvider  
+#4.Fragment可以添加到RecyclerView上，实现复杂的界面  
    对于复杂的界面非常有利，一个复杂的界面可以分成多个Fragment，一个项目组分配给多个人开发.  
 #5.RecyclerView上的Fragment是显示时候才加载
    具有懒加载的效果.假设RecyclerView上放了10个Fragment，你进去的时候只加载到开始的1,2个Fragment
 #6.支持全局注册ItemViewProvider，和局部注册，和局部覆盖注册.
 #7.列表的数据保存和恢复，以及fragment的保存和恢复  
+
+Download sample [Apk](https://github.com/LuckyJayce/MultiTypeView/blob/master/raw/MutiTypeDemo.apk?raw=true)  
 
 # 效果图 #
 ![image](https://github.com/LuckyJayce/MultiTypeView/blob/master/raw/1.png)  
