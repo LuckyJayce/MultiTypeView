@@ -11,8 +11,7 @@ import android.widget.EditText;
 
 import com.shizhefei.mutitypedemo.R;
 import com.shizhefei.mutitypedemo.type.Message;
-import com.shizhefei.mutitypedemo.type.MessageLeftProvider;
-import com.shizhefei.mutitypedemo.type.MessageRightProvider;
+import com.shizhefei.mutitypedemo.type.MessageProvider;
 import com.shizhefei.view.multitype.ItemBinderFactory;
 import com.shizhefei.view.multitype.ItemViewProviderSet;
 import com.shizhefei.view.multitype.MultiTypeAdapter;
@@ -39,7 +38,7 @@ public class ChatActivity extends AppCompatActivity {
         itemBinderFactory = new ItemBinderFactory();
         //有时候需要根据TextItem里面的某个字段，生成不同的布局.比如聊天界面的message是一样的，但是有区分左右布局
         //ItemProviderSet可以通过数据类型区分无数种情况的Provider
-        itemBinderFactory.registerProvider(Message.class, new ItemViewProviderSet<Message>(new MessageLeftProvider(), new MessageRightProvider()) {
+        itemBinderFactory.registerProvider(Message.class, new ItemViewProviderSet<Message>(new MessageProvider(MessageProvider.ALIGN_LEFT), new MessageProvider(MessageProvider.ALIGN_RIGHT)) {
             @Override
             protected int selectIndex(Message message) {
                 return myUserId.equals(message.userId) ? 1 : 0;

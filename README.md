@@ -101,7 +101,7 @@ Activity代码
 
   
   
-## 说明 ##
+# 说明 #
     
 **本项目是根据 https://github.com/drakeet/MultiType 类库的想法  
 把ViewHolder的创建以ItemViewProvider的形式分离出来

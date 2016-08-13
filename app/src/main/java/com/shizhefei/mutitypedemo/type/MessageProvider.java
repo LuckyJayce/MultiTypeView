@@ -6,17 +6,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.shizhefei.view.multitype.ItemViewProvider;
 import com.shizhefei.mutitypedemo.R;
+import com.shizhefei.view.multitype.ItemViewProvider;
 
 /**
  * Created by LuckyJayce on 2016/8/8.
  */
-public class MessageLeftProvider extends ItemViewProvider<Message> {
+public class MessageProvider extends ItemViewProvider<Message> {
+    public static final int ALIGN_LEFT = 0;
+    public static final int ALIGN_RIGHT = 1;
+    private int align;
+
+    public MessageProvider(int align) {
+        this.align = align;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int providerType) {
-        return new ItemViewHolder(inflater.inflate(R.layout.item_message_left, parent, false));
+        if (align == ALIGN_LEFT) {
+            return new ItemViewHolder(inflater.inflate(R.layout.item_message_left, parent, false));
+        }
+        return new ItemViewHolder(inflater.inflate(R.layout.item_message_right, parent, false));
     }
 
     @Override
