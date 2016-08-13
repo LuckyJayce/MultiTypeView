@@ -1,16 +1,32 @@
-package com.shizhefei.view.multitype;
+/*
+Copyright 2016 shizhefei（LuckyJayce）https://github.com/LuckyJayce
+Copyright 2016 drakeet.   https://github.com/drakeet
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ */
+package com.shizhefei.view.multitype;
 import android.support.v4.app.FragmentManager;
 import android.util.SparseArray;
 import android.view.View;
 
-import com.shizhefei.view.multitype.provider.FragmentData;
 import com.shizhefei.view.multitype.data.IParcelableData;
+import com.shizhefei.view.multitype.provider.FragmentData;
 import com.shizhefei.view.multitype.provider.FragmentDataProvider;
 import com.shizhefei.view.multitype.provider.ViewProvider;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * ItemData工厂
@@ -214,7 +230,7 @@ public class ItemBinderFactory {
             type = providerType;
             providerType++;
         }
-        return new ItemBinder<>(data, pt.provider, type);
+        return new ItemBinder(data, pt.provider, type);
     }
 
 //    public <DATA> ItemBinder<DATA> buildItemData(SerializableData data, ItemViewProvider<DATA> provider) {
