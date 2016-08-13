@@ -62,12 +62,12 @@ Activity代码
 	        ItemBinderFactory itemBinderFactory = new ItemBinderFactory(getSupportFragmentManager());
 	        //有时候需要根据TextItem里面的某个字段，生成不同的布局.比如聊天界面的message是一样的，但是有区分左右布局
 	        //ItemProviderSet可以通过数据类型区分无数种情况的Provider
-	        itemBinderFactory.registerProvider(Message.class, new ItemViewProviderSet<Message>(new MessageLeftProvider(), new MessageRightProvider()) {
-	            @Override
-	            protected int selectIndex(Message message) {
-	                return myUserId.equals(message.userId) ? 1 : 0;
-	            }
-	        });
+	       itemBinderFactory.registerProvider(Message.class, new ItemViewProviderSet<Message>(new MessageProvider(MessageProvider.ALIGN_LEFT), new MessageProvider(MessageProvider.ALIGN_RIGHT)) {
+                      @Override
+                      protected int selectIndex(Message message) {
+                          return myUserId.equals(message.userId) ? 1 : 0;
+                      }
+            });
 	        multiTypeAdapter = new MultiTypeAdapter<>(loadData(0), itemBinderFactory);
 	        multiTypeView.setAdapter(multiTypeAdapter);
 	    }
