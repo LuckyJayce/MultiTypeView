@@ -22,9 +22,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 /**
- * DATA数据类型的imteView提供者<br/><br/>
- * 用于创建ViewHolder和绑定数据到ViewHolder上<br/>
- * 相当于提供了对应数据的Item界面<br/><br/>
+ * DATA数据类型的imteView提供者
+ * 用于创建ViewHolder和绑定数据到ViewHolder上
+ * 相当于提供了对应数据的Item界面
  * 注意：千万不要把方法参数保存到字段中！！！！！
  * 注意：千万不要把方法参数保存到字段中！！！！！
  * 注意：千万不要把方法参数保存到字段中！！！！！

@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.shizhefei.view.multitype;
+package com.shizhefei.view.multitype.provider;
 
 import android.os.SystemClock;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,11 +21,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.ViewGroup;
 
+import com.shizhefei.view.multitype.MultiTypeView;
+
 /**
  * 分配View的id
  * Created by LuckyJayce on 2016/8/8.
  */
-public class ViewUtils {
+class ViewUtils {
 
     private static int id = 2345;
 

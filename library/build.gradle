@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
     compileSdkVersion 24
@@ -8,7 +9,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -23,4 +24,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
     provided 'com.android.support:support-v4:24.1.1'
     provided 'com.android.support:recyclerview-v7:24.1.1'
+}
+
+//上传到jcenter 执行
+//gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=apiKey -PdryRun=false
+//添加
+publish {
+    userOrg = 'luckyjayce'//bintray.com用户名
+    groupId = 'com.shizhefei'//jcenter上的路径
+    artifactId = 'MultiTypeView'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = 'more type Adapter in RecyclerView'//描述，不重要
+    website = 'https://github.com/LuckyJayce/MultiTypeView'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

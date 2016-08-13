@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.shizhefei.view.multitype.ItemViewProvider;
-import com.shizhefei.view.multitype.ViewUtils;
 
 /**
  * FragmentData提供者

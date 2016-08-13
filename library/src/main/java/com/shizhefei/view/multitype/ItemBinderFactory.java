@@ -183,7 +183,7 @@ public class ItemBinderFactory {
     }
 
     /**
-     * 注册多个Provider<br/>
+     * 注册多个Provider
      * 有时候需要根据TextItem里面的某个字段，生成不同的布局.比如聊天界面的message是一样的，但是有区分左右布局
      *
      * @param dataClass       数据的class
