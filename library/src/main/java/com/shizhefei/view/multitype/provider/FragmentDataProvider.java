@@ -70,9 +70,6 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
             fragment = getFragment(fragmentData);
             if (fragment.isAdded()) {
                 fragmentManager.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
-                if (fragmentData.savedState != null) {
-                    fragment.setInitialSavedState(fragmentData.savedState);
-                }
             }
             fragmentManager.beginTransaction().add(containerViewId, fragment, fragmentData.getTag()).commitNowAllowingStateLoss();
             fragmentData.setFragment(fragment);
@@ -101,8 +98,6 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState, FragmentData data) {
         super.onRestoreInstanceState(savedInstanceState, data);
-        Fragment.SavedState savedState = savedInstanceState.getParcelable("FragmentData#" + data.getTag());
-        data.setSavedState(savedState);
     }
 
     @Override
@@ -112,12 +107,6 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
         if (fragment != null) {
             fragment.setUserVisibleHint(false);
             fragment.setMenuVisibility(false);
-            try {
-                Fragment.SavedState savedState = fragmentManager.saveFragmentInstanceState(fragment);
-                savedInstanceState.putParcelable("FragmentData#" + data.getTag(), savedState);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -128,9 +117,6 @@ public class FragmentDataProvider extends ItemViewProvider<FragmentData> {
         Fragment fragment = fragmentManager.findFragmentByTag(fragmentData.getTag());
         if (fragment == null) {
             fragment = instantiate(fragmentData);
-            if (fragmentData.savedState != null) {
-                fragment.setInitialSavedState(fragmentData.savedState);
-            }
             fragment.setMenuVisibility(false);
             fragment.setUserVisibleHint(false);
         }

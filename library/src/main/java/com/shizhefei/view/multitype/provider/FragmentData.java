@@ -35,16 +35,15 @@ public class FragmentData implements Parcelable {
     final Class<? extends Fragment> fragmentClass;
     Fragment fragment;
     String tag;
-    Fragment.SavedState savedState;
     int containerViewId = View.NO_ID;
 
-    public FragmentData(Class<? extends Fragment> fragmentClass, String key) {
+    /**
+     * @param fragmentClass fragment的class
+     * @param fragmentTag   tag必须是唯一
+     */
+    public FragmentData(Class<? extends Fragment> fragmentClass, String fragmentTag) {
         this.fragmentClass = fragmentClass;
-        this.tag = key;
-    }
-
-    void setSavedState(Fragment.SavedState savedState) {
-        this.savedState = savedState;
+        this.tag = fragmentTag;
     }
 
     public String getTag() {
@@ -80,7 +79,6 @@ public class FragmentData implements Parcelable {
     public void resetState() {
         tag = "";
         fragment = null;
-        savedState = null;
     }
 
     @Override
@@ -93,14 +91,12 @@ public class FragmentData implements Parcelable {
         dest.writeBundle(this.arguments);
         dest.writeSerializable(this.fragmentClass);
         dest.writeString(this.tag);
-        dest.writeParcelable(savedState, flags);
     }
 
     protected FragmentData(Parcel in) {
         this.arguments = in.readBundle();
         this.fragmentClass = (Class<? extends Fragment>) in.readSerializable();
         this.tag = in.readString();
-        this.savedState = in.readParcelable(Fragment.SavedState.class.getClassLoader());
     }
 
     public static final Creator<FragmentData> CREATOR = new Creator<FragmentData>() {
