@@ -103,7 +103,7 @@ Activity代码
 
 # Gradle #
 
-	compile 'com.shizhefei:MultiTypeView:1.0.0'
+	compile 'com.shizhefei:MultiTypeView:1.0.1'
 	由于用到了v4和recyclerview所以也要导入他们  
 	compile 'com.android.support:support-v4:23.4.0'  
 	compile 'com.android.support:recyclerview-v7:23.2.1'  
